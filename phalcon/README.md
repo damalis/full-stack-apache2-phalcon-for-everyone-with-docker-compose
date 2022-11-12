@@ -1,5 +1,5 @@
-# Symfony
+# Phalcon
 
-add and/or remove symfony themes, plugins or custom code folders and files with any ftp client program to ./symfony/webapp folder
-<br /><br />./symfony/webapp file is located in the root of your symfony file directory and contains your website’s base configuration details, such as database connection information.
+add and/or remove phalcon themes, plugins or custom code folders and files with any ftp client program to ./phalcon/html folder
+<br /><br />./phalcon/html file is located in the root of your phalcon file directory and contains your website’s base configuration details, such as database connection information.
 You can set custom configuration for your website in this file.
