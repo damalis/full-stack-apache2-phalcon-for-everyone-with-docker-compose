@@ -6,7 +6,7 @@ services:
         depends_on:
             - database
         #image: '${PHP_IMAGE_NAME}'
-        build: ../docker/8.1
+        build: ./docker/8.1
         working_dir: /srv
         container_name: phalcon
         networks:
