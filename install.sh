@@ -4,7 +4,7 @@ clear
 echo ""
 echo "======================================================================="
 echo "|                                                                     |"
-echo "|     full-stack-apache2-phalcon-for-everyone-with-docker-compose     |"
+echo "|    full-stack-apache2-laminas-for-everyone-with-docker-compose      |"
 echo "|                         by Erdal ALTIN                              |"
 echo "|                                                                     |"
 echo "======================================================================="
@@ -220,9 +220,9 @@ sed -i 's/local_timezone/'$local_timezone'/' .env
 if [ -x "$(command -v docker)" ] && [ -x "$(command -v docker-compose)" ]; then
     # Firstly: create external volume
 	docker volume create --driver local --opt type=none --opt device=`pwd`/certbot --opt o=bind certbot-etc > /dev/null
-	# installing Phalcon and the other services
+	# installing Laminas and the other services
 	docker-compose up -d & export pid=$!
-	echo "Phalcon and the other services installing proceeding..."
+	echo "Laminas and the other services installing proceeding..."
 	echo ""
 	wait $pid
 	if [ $? -eq 0 ]
@@ -250,8 +250,8 @@ if [ -x "$(command -v docker)" ] && [ -x "$(command -v docker-compose)" ]; then
 				if [ ! -z `docker ps -q -f "status=running" --no-trunc | grep $(docker-compose ps -q webserver)` ]; then break; fi
 			done			
 			echo ""
-			echo "Reloading Apache2 ssl configuration"
-			docker exec webserver httpd -k restart > /dev/null 2>&1
+			echo "Reloading webserver ssl configuration"
+			docker container restart webserver > /dev/null 2>&1
 			echo "Ok."
 			echo ""
 			echo "completed setup"
@@ -264,7 +264,7 @@ if [ -x "$(command -v docker)" ] && [ -x "$(command -v docker-compose)" ]; then
 		fi
 	else
 		echo ""
-		echo "Error! could not installed Phalcon and the other services with docker-compose" >&2
+		echo "Error! could not installed Laminas and the other services with docker-compose" >&2
 		exit 1
 	fi
 else
