@@ -4,7 +4,7 @@ clear
 echo ""
 echo "======================================================================="
 echo "|                                                                     |"
-echo "|    full-stack-apache2-laminas-for-everyone-with-docker-compose      |"
+echo "|    full-stack-apache2-phalcon-for-everyone-with-docker-compose      |"
 echo "|                         by Erdal ALTIN                              |"
 echo "|                                                                     |"
 echo "======================================================================="
@@ -220,9 +220,9 @@ sed -i 's/local_timezone/'$local_timezone'/' .env
 if [ -x "$(command -v docker)" ] && [ -x "$(command -v docker-compose)" ]; then
     # Firstly: create external volume
 	docker volume create --driver local --opt type=none --opt device=`pwd`/certbot --opt o=bind certbot-etc > /dev/null
-	# installing Laminas and the other services
+	# installing Phalcon and the other services
 	docker-compose up -d & export pid=$!
-	echo "Laminas and the other services installing proceeding..."
+	echo "Phalcon and the other services installing proceeding..."
 	echo ""
 	wait $pid
 	if [ $? -eq 0 ]
@@ -264,7 +264,7 @@ if [ -x "$(command -v docker)" ] && [ -x "$(command -v docker-compose)" ]; then
 		fi
 	else
 		echo ""
-		echo "Error! could not installed Laminas and the other services with docker-compose" >&2
+		echo "Error! could not installed Phalcon and the other services with docker-compose" >&2
 		exit 1
 	fi
 else
