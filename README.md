@@ -10,7 +10,7 @@ Plus, manage docker containers with Portainer.
 
 #### With this project you can quickly run the following:
 
-- [Phalcon](https://github.com/cphalcon) - [php-fpm](https://hub.docker.com/_/php?tab=tags&page=1&name=fpm)
+- [Phalcon](https://github.com/phalcon/cphalcon) - [php-fpm](https://hub.docker.com/_/php?tab=tags&page=1&name=fpm)
 - [webserver (apache2/httpd)](https://hub.docker.com/_/httpd)
 - [certbot (letsencrypt)](https://hub.docker.com/r/certbot/certbot)
 - [phpMyAdmin](https://hub.docker.com/r/phpmyadmin/phpmyadmin/)
