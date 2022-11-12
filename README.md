@@ -10,7 +10,7 @@ Plus, manage docker containers with Portainer.
 
 #### With this project you can quickly run the following:
 
-- [Phalcon](https://github.com/phalcon) - [php-fpm](https://hub.docker.com/_/php?tab=tags&page=1&name=fpm)
+- [Phalcon](https://github.com/cphalcon) - [php-fpm](https://hub.docker.com/_/php?tab=tags&page=1&name=fpm)
 - [webserver (apache2/httpd)](https://hub.docker.com/_/httpd)
 - [certbot (letsencrypt)](https://hub.docker.com/r/certbot/certbot)
 - [phpMyAdmin](https://hub.docker.com/r/phpmyadmin/phpmyadmin/)
@@ -37,6 +37,11 @@ Create rules to open ports to the internet, or to a specific IPv4 address or ran
 - [Manual Configuration and Installation](#manual)
 - [Portainer Installation](#portainer)
 - [Usage](#usage)
+	- [Website](#website)
+	- [Webserver](#webserver)
+	- [Redis](#redis)
+	- [phpMyAdmin](#phpmyadmin)
+	- [backup](#backup)					  
 
 ## Automatic
 
@@ -195,6 +200,10 @@ You can now use the `up` command:
 docker-compose up -d
 ```
 
+### Docker run reference
+
+[https://docs.docker.com/engine/reference/run/](https://docs.docker.com/engine/reference/run/)
+
 ### Website
 
 You should see the "Welcome to Phalcon..." page in your browser. If not, please check if your PHP installation satisfies Phalcon's requirements.
@@ -203,19 +212,13 @@ You should see the "Welcome to Phalcon..." page in your browser. If not, please 
 https://example.com
 ```
 
-add or remove code in the ```./php-fpm/php/conf.d/security.ini``` file for custom php.ini configurations
+add or remove code in the ./php-fpm/php/conf.d/security.ini file for custom php.ini configurations
 
-Copy and paste the following code in the ```./php-fpm/php-fpm.d/z-www.conf``` file for php-fpm configurations at 1Gb Ram Host
+[https://www.php.net/manual/en/configuration.file.php](https://www.php.net/manual/en/configuration.file.php)
 
-```
-pm.max_children = 19
-pm.start_servers = 4
-pm.min_spare_servers = 2
-pm.max_spare_servers = 4
-pm.max_requests = 1000
-```
+You should make changes custom host configurations ```./php-fpm/php-fpm.d/z-www.conf``` then must restart service, FPM uses php.ini syntax for its configuration file - php-fpm.conf, and pool configuration files.
 
-Or you should make changes custom host configurations then must restart service
+[https://www.php.net/manual/en/install.fpm.configuration.php](https://www.php.net/manual/en/install.fpm.configuration.php)
 
 ```
 docker container restart phalcon
@@ -223,6 +226,12 @@ docker container restart phalcon
 
 add and/or remove phalcon site folders and files with any ftp client program in ```./phalcon``` folder.
 <br />You can also visit `https://example.com` to access website after starting the containers.
+
+#### Webserver
+
+add or remove code in the ```./webserver/extra/httpd-vhosts.conf``` file for custom apache2/httpd configurations
+
+[https://httpd.apache.org/docs/2.4/](https://httpd.apache.org/docs/2.4/)
 
 #### Redis
 
