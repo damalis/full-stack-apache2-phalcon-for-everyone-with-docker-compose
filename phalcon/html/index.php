@@ -1,17 +1,17 @@
 <?php
 
 use Phalcon\Di\FactoryDefault;
-use Phalcon\Loader\Loader;
+use Phalcon\Autoload\Loader;
 use Phalcon\Mvc\View;
 use Phalcon\Mvc\Application;
 use Phalcon\Url;
 
-define('BASE_PATH', dirname(__DIR__));
+define('BASE_PATH', __DIR__);
 define('APP_PATH', BASE_PATH . '/app');
 
 $loader = new Loader();
 
-$loader->registerDirs(
+$loader->setDirectories(
     [
         APP_PATH . '/controllers/',
         APP_PATH . '/models/',
