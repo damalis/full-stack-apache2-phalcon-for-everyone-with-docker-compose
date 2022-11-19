@@ -37,8 +37,8 @@ services:
         labels:            
             - 'docker-volume-backup.stop-during-backup=true'
         command: >
-            bash -c "apt-get -y update && apt-get install -y zip unzip libicu-dev && curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer && composer require phalcon/incubator; 
-            chmod +x /srv/build/install && cd /srv/build/ && ./install && echo 'extension=phalcon.so' > ${PHP_INI_DIR_PREFIX}/php/conf.d/phalcon.ini; 
+            bash -c "chmod +x /srv/build/install && cd /srv/build/ && ./install && echo 'extension=phalcon.so' > ${PHP_INI_DIR_PREFIX}/php/conf.d/phalcon.ini; composer require phalcon/incubator --working_dir=${WEBSERVER_DOC_ROOT}; 
+            git clone https://github.com/jbboehr/php-psr.git && cd php-psr && /usr/local/bin/phpize && ./configure --with-php-config=/usr/local/bin/php-config && make && make test && make install && echo 'extension=psr.so' > ${PHP_INI_DIR_PREFIX}/php/conf.d/psr.ini; 
             grep -qe 'date.timezone = ${LOCAL_TIMEZONE}' ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini || echo 'date.timezone = ${LOCAL_TIMEZONE}' >> ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini; php-fpm"
 
     webserver:
