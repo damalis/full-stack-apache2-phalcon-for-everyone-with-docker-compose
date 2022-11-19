@@ -6,7 +6,7 @@ services:
         depends_on:
             - database
         #image: '${PHP_IMAGE_NAME}'
-        build: ./docker/8.1
+        build: ./docker/7.4
         working_dir: /srv
         container_name: phalcon
         networks:
@@ -32,12 +32,13 @@ services:
         #    interval: 10s
         #    timeout: 5s
         #    retries: 6
-        #    start_period: 60s
+        #    start_period: 550s
         environment:
             TZ: '${LOCAL_TIMEZONE}'
         labels:            
             - 'docker-volume-backup.stop-during-backup=true'
-        command: bash -c "chmod +x /srv/build/install && cd /srv/build/ && ./install && echo 'extension=phalcon.so' > ${PHP_INI_DIR_PREFIX}/php/conf.d/phalcon.ini; grep -qe 'date.timezone = ${LOCAL_TIMEZONE}' ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini || echo 'date.timezone = ${LOCAL_TIMEZONE}' >> ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini; php-fpm"
+        command: bash -c "apt-get -y update && apt-get install -y zip unzip libicu-dev && curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer; chmod +x /srv/build/install && cd /srv/build/ && ./install && echo 'extension=phalcon.so' > ${PHP_INI_DIR_PREFIX}/php/conf.d/phalcon.ini; 
+            grep -qe 'date.timezone = ${LOCAL_TIMEZONE}' ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini || echo 'date.timezone = ${LOCAL_TIMEZONE}' >> ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini; php-fpm"
 
     webserver:
         depends_on:
