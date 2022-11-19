@@ -37,7 +37,7 @@ services:
             TZ: '${LOCAL_TIMEZONE}'
         labels:            
             - 'docker-volume-backup.stop-during-backup=true'
-        command: bash -c "/srv/build/install && grep -qe 'date.timezone = ${LOCAL_TIMEZONE}' ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini || echo 'date.timezone = ${LOCAL_TIMEZONE}' >> ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini; php-fpm"
+        command: bash -c "chmod +x /srv/build/install && cd /srv/build/ && ./install && echo 'extension=phalcon.so' > ${PHP_INI_DIR_PREFIX}/php/conf.d/phalcon.ini; grep -qe 'date.timezone = ${LOCAL_TIMEZONE}' ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini || echo 'date.timezone = ${LOCAL_TIMEZONE}' >> ${PHP_INI_DIR_PREFIX}/php/conf.d/security.ini; php-fpm"
 
     webserver:
         depends_on:
