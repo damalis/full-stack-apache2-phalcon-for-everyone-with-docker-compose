@@ -206,7 +206,7 @@ docker compose up -d
 
 ### Website
 
-You should see the "Welcome to Phalcon..." page in your browser. If not, please check if your PHP installation satisfies Phalcon's requirements.
+You should see the "Hello, world!" page in your browser. If not, please check if your PHP installation satisfies Phalcon's requirements.
 
 ```
 https://example.com
