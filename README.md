@@ -39,7 +39,9 @@ Create rules to open ports to the internet, or to a specific IPv4 address or ran
 - [Usage](#usage)
 	- [Website](#website)
 	- [Webserver](#webserver)
+	- [Database](#database)
 	- [Redis](#redis)
+	- [Cache](#cache)
 	- [phpMyAdmin](#phpmyadmin)
 	- [backup](#backup)					  
 
@@ -224,7 +226,7 @@ You should make changes custom host configurations ```./php-fpm/php-fpm.d/z-www.
 docker container restart phalcon
 ```
 
-add and/or remove phalcon site folders and files with any ftp client program in ```./phalcon``` folder.
+add and/or remove phalcon site folders and files with any ftp client program in ```./phalcon/html``` folder.
 <br />You can also visit `https://example.com` to access website after starting the containers.
 
 #### Webserver
@@ -232,6 +234,26 @@ add and/or remove phalcon site folders and files with any ftp client program in 
 add or remove code in the ```./webserver/extra/httpd-ssl.conf``` file for custom apache2/httpd configurations
 
 [https://httpd.apache.org/docs/2.4/](https://httpd.apache.org/docs/2.4/)
+
+#### Database
+
+```
+use Phalcon\Db\Adapter\Pdo\Mysql;
+
+$config = [
+    "host"     => "database",
+    "dbname"   => "${DB_NAME}",
+    "port"     => 3306,
+    "username" => "${DB_USER}",
+    "password" => "${DB_PASSWORD}",
+];
+
+$connection = new Mysql($config);
+```
+
+[https://docs.phalcon.io/5.0/en/db-layer](https://docs.phalcon.io/5.0/en/db-layer)
+
+[https://mariadb.com/kb/en/configuring-mariadb-with-option-files/](https://mariadb.com/kb/en/configuring-mariadb-with-option-files/)
 
 #### Redis
 
@@ -248,6 +270,12 @@ $options = [
     'index'             => 1,
 ];
 ```
+
+#### Cache
+
+The Phalcon\Cache\Cache is a component that offers a lightweight yet flexible caching mechanism to be used with your Phalcon applications.
+
+[https://docs.phalcon.io/5.0/en/cache](https://docs.phalcon.io/5.0/en/cache)
 
 ### phpMyAdmin
 
