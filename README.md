@@ -41,7 +41,7 @@ Create rules to open ports to the internet, or to a specific IPv4 address or ran
 	- [Webserver](#webserver)
 	- [Database](#database)
 	- [Redis](#redis)
-	- [Cache](#cache)
+	- [Model Caching](#model-caching)
 	- [phpMyAdmin](#phpmyadmin)
 	- [backup](#backup)					  
 
@@ -257,7 +257,7 @@ $connection = new Mysql($config);
 
 #### Redis
 
-[Redis Cache](https://docs.phalcon.io/5.0/en/cache); The Phalcon\Cache\Cache is a component that offers a lightweight yet flexible caching mechanism to be used with your Phalcon applications.
+[Redis Cache](https://docs.phalcon.io/5.0/en/cache#redis); The Phalcon\Cache\Cache is a component that offers a lightweight yet flexible caching mechanism to be used with your Phalcon applications.
 
 Available options are:
 
@@ -271,11 +271,12 @@ $options = [
 ];
 ```
 
-#### Cache
+#### Model Caching
 
-The Phalcon\Cache\Cache is a component that offers a lightweight yet flexible caching mechanism to be used with your Phalcon applications.
+Implementing some layers of caching, reduces the number of connections and lookups to your database. This will ensure that data is queried from the database only when absolutely necessary. 
+This article showcases some areas that caching could increase performance.
 
-[https://docs.phalcon.io/5.0/en/cache](https://docs.phalcon.io/5.0/en/cache)
+[https://docs.phalcon.io/5.0/en/db-models-cache](https://docs.phalcon.io/5.0/en/db-models-cache)
 
 ### phpMyAdmin
 
